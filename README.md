@@ -31,6 +31,13 @@ TBD
 
 TBD
 
+## References
+
+- [Let’s write a Chip8 emulator in Kotlin](http://www.badlogicgames.com/wordpress/?p=3564)
+- [Chip-8](http://en.wikipedia.org/wiki/CHIP-8)
+- [JavaScript Chip-8 Emulator](http://blog.alexanderdickson.com/javascript-chip-8-emulator)
+- [A Chip-8 Emulator](https://github.com/alexanderdickson/Chip-8-Emulator)
+
 ## Contribution
 
 Feel free to [file issues](https://github.com/ajlopez/Chip8) and submit
