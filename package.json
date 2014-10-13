@@ -1,0 +1,17 @@
+{ "name": "chip8"
+, "description": "Simple collections functions in JavaScript"
+, "keywords": [ "javascript", "chip8", "emulator", "game development", "vm" ]
+, "version": "0.0.1alpha"
+, "author": "Angel 'Java' Lopez <webmaster@ajlopez.com> (http://www.ajlopez.com)"
+, "repository": { "type": "git", "url": "git://github.com/ajlopez/Chip8.git" }
+, "main": "./lib/chip8.js"
+, "engines": { "node": ">= 0.6.0 && < 0.13.0" }
+, "scripts": {
+    "test": "simpleunit ./test"
+  }
+, "dependencies": {
+  }
+, "devDependencies": {
+    "simpleunit": "0.0.6"
+  }
+}
