@@ -37,6 +37,8 @@ TBD
 - [Chip-8](http://en.wikipedia.org/wiki/CHIP-8)
 - [JavaScript Chip-8 Emulator](http://blog.alexanderdickson.com/javascript-chip-8-emulator)
 - [A Chip-8 Emulator](https://github.com/alexanderdickson/Chip-8-Emulator)
+- [Cowgod's Chip-8 Technical Reference v1.0](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM)
+- [Chip8.com](http://chip8.com/)
 
 ## Contribution
 
