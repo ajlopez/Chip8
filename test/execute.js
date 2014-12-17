@@ -14,3 +14,12 @@ exports['load register 1'] = function (test) {
     test.equal(machine.v[1], 0x12);
 }
 
+exports['load registers'] = function (test) {
+    var machine = chip8.machine();
+    
+    for (var nr = 0; nr < 16; nr++) {
+        var code = 0x6000 | (nr << 8) | nr * 10;
+        machine.execute(code);
+        test.equal(machine.v[nr], nr * 10);
+    }
+}
