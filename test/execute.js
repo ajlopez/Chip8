@@ -23,3 +23,12 @@ exports['load registers'] = function (test) {
         test.equal(machine.v[nr], nr * 10);
     }
 }
+
+exports['load register 2 from register 1'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 10;
+    machine.execute(0x8210);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 10);
+    test.equal(machine.v[2], 10);
+}
