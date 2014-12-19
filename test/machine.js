@@ -27,3 +27,10 @@ exports['create machine with registers'] = function (test) {
         test.equal(machine.v[k], 0);
 }
 
+exports['create machine with register i'] = function (test) {
+    var machine = chip8.machine();
+    
+    test.ok(machine);
+    test.strictEqual(machine.i, 0);
+}
+
