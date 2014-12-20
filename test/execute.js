@@ -51,3 +51,11 @@ exports['load register i'] = function (test) {
     machine.execute(0xa123);
     test.equal(machine.i, 0x0123);
 }
+
+exports['add to register i'] = function (test) {
+    var machine = chip8.machine();
+    machine.i = 0x0123;
+    machine.v[2] = 0x0010;
+    machine.execute(0xf21e);
+    test.equal(machine.i, 0x0133);
+}
