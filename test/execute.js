@@ -43,6 +43,16 @@ exports['or registers 1 and 2'] = function (test) {
     test.equal(machine.v[2], 0x10 | 0x12);
 }
 
+exports['and registers 1 and 2'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x12;
+    machine.execute(0x8212);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0x11 & 0x12);
+}
+
 exports['load registers from registers'] = function (test) {
     var machine = chip8.machine();
     
