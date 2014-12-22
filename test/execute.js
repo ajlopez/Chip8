@@ -53,6 +53,38 @@ exports['and registers 1 and 2'] = function (test) {
     test.equal(machine.v[2], 0x11 & 0x12);
 }
 
+exports['xor registers 1 and 2'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x12;
+    machine.execute(0x8213);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0x11 ^ 0x12);
+}
+
+exports['add registers 1 and 2 without carry'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x12;
+    machine.execute(0x8214);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0x11 + 0x12);
+    test.strictEqual(machine.vf, 0);
+}
+
+exports['add registers 1 and 2 with carry'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x81;
+    machine.v[2] = 0x82;
+    machine.execute(0x8214);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x81);
+    test.equal(machine.v[2], (0x81 + 0x82) & 0x00ff);
+    test.strictEqual(machine.vf, 1);
+}
+
 exports['load registers from registers'] = function (test) {
     var machine = chip8.machine();
     
