@@ -74,6 +74,39 @@ exports['add registers 1 and 2 without carry'] = function (test) {
     test.strictEqual(machine.vf, 0);
 }
 
+exports['subtract registers 1 and 2 without borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x12;
+    machine.execute(0x8215);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0x12 - 0x11);
+    test.strictEqual(machine.vf, 1);
+}
+
+exports['subtract registers 1 and 2 with borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x10;
+    machine.execute(0x8215);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], (0x10 - 0x11) & 0x00ff);
+    test.strictEqual(machine.vf, 0);
+}
+
+exports['subtract registers 1 and 2 giving 0 without borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x11;
+    machine.execute(0x8215);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0);
+    test.strictEqual(machine.vf, 0);
+}
+
 exports['add registers 1 and 2 with carry'] = function (test) {
     var machine = chip8.machine();
     machine.v[1] = 0x81;
