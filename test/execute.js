@@ -144,3 +144,23 @@ exports['add to register i'] = function (test) {
     machine.execute(0xf21e);
     test.equal(machine.i, 0x0133);
 }
+
+exports['shift right register without bit'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[2] = 0x82;
+    machine.execute(0x8216);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0);
+    test.equal(machine.v[2], 0x0082 >> 1);
+    test.strictEqual(machine.vf, 0);
+}
+
+exports['shift right register without bit'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[2] = 0x83;
+    machine.execute(0x8216);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0);
+    test.equal(machine.v[2], 0x0083 >> 1);
+    test.strictEqual(machine.vf, 1);
+}
