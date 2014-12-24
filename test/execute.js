@@ -155,12 +155,32 @@ exports['shift right register without bit'] = function (test) {
     test.strictEqual(machine.vf, 0);
 }
 
-exports['shift right register without bit'] = function (test) {
+exports['shift right register with bit'] = function (test) {
     var machine = chip8.machine();
     machine.v[2] = 0x83;
     machine.execute(0x8216);
     test.equal(machine.v[0], 0);
     test.equal(machine.v[1], 0);
     test.equal(machine.v[2], 0x0083 >> 1);
+    test.strictEqual(machine.vf, 1);
+}
+
+exports['shift left register without bit'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[2] = 0x62;
+    machine.execute(0x821e);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0);
+    test.equal(machine.v[2], 0x0062 << 1);
+    test.strictEqual(machine.vf, 0);
+}
+
+exports['shift left register with bit'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[2] = 0x83;
+    machine.execute(0x821e);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0);
+    test.equal(machine.v[2], 0x0083 << 1);
     test.strictEqual(machine.vf, 1);
 }
