@@ -184,3 +184,37 @@ exports['shift left register with bit'] = function (test) {
     test.equal(machine.v[2], 0x0083 << 1);
     test.strictEqual(machine.vf, 1);
 }
+
+exports['subtract negate registers 1 and 2 without borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x12;
+    machine.v[2] = 0x11;
+    machine.execute(0x8217);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x12);
+    test.equal(machine.v[2], 0x12 - 0x11);
+    test.strictEqual(machine.vf, 1);
+}
+
+exports['subtract negate registers 1 and 2 with borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x10;
+    machine.v[2] = 0x11;
+    machine.execute(0x8217);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x10);
+    test.equal(machine.v[2], (0x10 - 0x11) & 0x00ff);
+    test.strictEqual(machine.vf, 0);
+}
+
+exports['subtract negate registers 1 and 2 giving 0 without borrow'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[1] = 0x11;
+    machine.v[2] = 0x11;
+    machine.execute(0x8217);
+    test.equal(machine.v[0], 0);
+    test.equal(machine.v[1], 0x11);
+    test.equal(machine.v[2], 0);
+    test.strictEqual(machine.vf, 0);
+}
+
