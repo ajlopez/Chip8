@@ -218,3 +218,10 @@ exports['subtract negate registers 1 and 2 giving 0 without borrow'] = function 
     test.strictEqual(machine.vf, 0);
 }
 
+exports['jump to address'] = function (test) {
+    var machine = chip8.machine();
+    machine.v[0] = 0x10;
+    machine.execute(0xb123);
+    test.equal(machine.pc, 0x133);
+}
+
