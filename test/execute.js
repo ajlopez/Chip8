@@ -232,4 +232,12 @@ exports['jump to address'] = function (test) {
     test.equal(machine.pc, 0x123);
 }
 
+exports['call to address'] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.execute(0x2123);
+    test.equal(machine.pc, 0x123);
+    test.equal(machine.sp, 1);
+    test.equal(machine.stack[0], 0x20);
+}
 
