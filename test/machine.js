@@ -13,6 +13,7 @@ exports['create machine'] = function (test) {
     test.ok(machine.stack);
     test.ok(Array.isArray(machine.stack));
     test.equal(machine.stack.length, 16);
+    test.strictEqual(machine.sp, 0);
 }
 
 exports['create machine with registers'] = function (test) {
