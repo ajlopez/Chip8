@@ -241,3 +241,13 @@ exports['call to address'] = function (test) {
     test.equal(machine.stack[0], 0x20);
 }
 
+exports['return to address'] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.sp = 1;
+    machine.stack[0] = 0x100;
+    machine.execute(0x00ee);
+    test.equal(machine.pc, 0x100);
+    test.equal(machine.sp, 0);
+}
+
