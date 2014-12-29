@@ -251,3 +251,19 @@ exports['return to address'] = function (test) {
     test.equal(machine.sp, 0);
 }
 
+exports['skip if equal'] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.execute(0x3145);
+    test.equal(machine.pc, 0x22);
+}
+
+exports["don't skip if not equal"] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.execute(0x3144);
+    test.equal(machine.pc, 0x20);
+}
+
