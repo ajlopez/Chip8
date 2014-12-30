@@ -267,3 +267,19 @@ exports["don't skip if not equal"] = function (test) {
     test.equal(machine.pc, 0x20);
 }
 
+exports['skip if not equal'] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.execute(0x4140);
+    test.equal(machine.pc, 0x22);
+}
+
+exports["don't skip if equal"] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.execute(0x4145);
+    test.equal(machine.pc, 0x20);
+}
+
