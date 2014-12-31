@@ -283,3 +283,21 @@ exports["don't skip if equal"] = function (test) {
     test.equal(machine.pc, 0x20);
 }
 
+exports['skip if equal registers'] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.v[2] = 0x45;
+    machine.execute(0x5120);
+    test.equal(machine.pc, 0x22);
+}
+
+exports["don't skip if not equal registers"] = function (test) {
+    var machine = chip8.machine();
+    machine.pc = 0x20;
+    machine.v[1] = 0x45;
+    machine.v[2] = 0x46;
+    machine.execute(0x5120);
+    test.equal(machine.pc, 0x20);
+}
+
