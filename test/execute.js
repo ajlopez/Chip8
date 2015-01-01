@@ -301,3 +301,13 @@ exports["don't skip if not equal registers"] = function (test) {
     test.equal(machine.pc, 0x20);
 }
 
+exports["store BCD register to memory"] = function (test) {
+    var machine = chip8.machine();
+    machine.i = 100;
+    machine.v[1] = 123;
+    machine.execute(0xf133);
+    test.equal(machine.memory[100], 1);
+    test.equal(machine.memory[101], 2);
+    test.equal(machine.memory[102], 3);
+}
+
